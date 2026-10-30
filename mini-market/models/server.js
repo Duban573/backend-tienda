@@ -1,31 +1,18 @@
 import express from "express";
 import 'dotenv/config';
 import cors from 'cors'
+import router from '../routes/users.js';
 
 class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT || 3001;
         this.middlewares();
-        this.routes();
+        this.usuariosPath = '/api/users';
     }
 
     routes() {
-        this.app.get('/api', (req, res) => {
-            res.json({ message: 'GET - Server' });
-        });
-
-        this.app.post('/api', (req, res) => {
-            res.json({ message: 'POST - Server' });
-        });
-
-        this.app.put('/api', (req, res) => {
-            res.json({ message: 'PUT - Server' });
-        });
-
-        this.app.delete('/api', (req, res) => {
-            res.json({ message: 'DELETE - Server' });
-        });
+        this.app.use(this.usuariosPath, router);
     }
 
 
@@ -43,3 +30,4 @@ class Server {
 }
 
 export default Server;
+default Server;
